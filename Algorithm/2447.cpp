@@ -21,7 +21,7 @@ int main()
 
 void star(int n)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n;   i++)
     {
         for (int j = 0, k; j < n; j++)
         {
