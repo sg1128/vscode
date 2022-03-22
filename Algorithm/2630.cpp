@@ -36,10 +36,12 @@ int findBW(int *square[], int N, int r, int c)
         {
             if (square[i + r][j + c] != temp)
             {
-                return findBW(square, N / 2, r, c) +
-                       findBW(square, N / 2, r + (N / 2), c) +
-                       findBW(square, N / 2, r, c + (N / 2)) +
-                       findBW(square, N / 2, r + (N / 2), c + (N / 2)); // 재귀함수, 4가지 상황
+                findBW(square, N / 2, r, c);
+                findBW(square, N / 2, r + (N / 2), c) +
+                    findBW(square, N / 2, r, c + (N / 2)) +
+                    findBW(square, N / 2, r + (N / 2), c + (N / 2));
+                return 0; // 재귀함수, 4가지 상황
+        
             }
         }
     }
@@ -49,8 +51,7 @@ int findBW(int *square[], int N, int r, int c)
     }
     else
         white++;
-
-    return 1;
+    return 0;
 }
 
 /*
