@@ -23,7 +23,7 @@ int main()
         cout << "error!" << endl;
     }
     else
-    { 
+    {
         int a = n - 8 + 1;
         int b = m - 8 + 1;
         int c = a * b;
