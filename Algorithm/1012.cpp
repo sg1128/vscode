@@ -3,24 +3,34 @@
 #include <stdio.h>
 using namespace std;
 
-int dx[4] = { 0,0,1, -1};
+int N, M, K; 
+int graph[51][51];
+
+//4가지 경우
+int dx[4] = {0, 0, 1, -1};
 int dy[4] = {1, -1, 0, 0};
 
-void dfs(int graph[][50], int x, int y)
+void dfs(int x, int y)
 {
+    // 만약 1이면 0으로 바꿈
     if(graph[x][y] ==1 ){
-        graph[x][y] = 2;
-        dfs(graph, x + 1, y);
-        dfs(graph, x - 1, y);
-        dfs(graph, x , y+1);
-        dfs(graph, x  ,y-1);
+        graph[x][y] = 0;
+        for(int i=0; i<4; ++i)
+        {
+            int a=dx[i] +x;
+            int b=dy[i] + y;
+            //a와b가 MN크기를 벗어나지 않고 0보다 크면 다시 dfs돌림
+            if(a>=0 && b>=0 && a<M && b<N)
+            {
+                dfs(a,b);
+            }
+        }
     }
 }
 
 int main()
 {
     int T;
-    int N, M, K;
     int X, Y;
 
     cin >> T;
@@ -28,7 +38,13 @@ int main()
     {
         int count=0;
         cin >> M >> N >> K;
-        int graph[50][50] = {0,};
+        for(int i=0; i<51; i++)
+        {
+            for (int j = 0; j < 51; j++)
+            {
+                graph[i][j] = 0;
+            }
+        }
 
         for (int i = 0; i < K; i++)
         {
@@ -41,12 +57,11 @@ int main()
             {
                 if(graph[i][j] == 1)
                 {
-                    dfs(graph, i, j);
+                    dfs(i, j);
                     count++;
                 }
             }
         }
         cout << count << endl;
-        memset(graph, 0, sizeof(graph));
     }
 }

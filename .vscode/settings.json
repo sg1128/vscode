@@ -5,6 +5,7 @@
     "ostream": "cpp",
     "*.tcc": "cpp",
     "vector": "cpp",
-    "unistd.h": "c"
+    "unistd.h": "c",
+    "algorithm": "cpp"
   }
 }
